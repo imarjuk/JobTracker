@@ -33,25 +33,27 @@ function toggleStyle(id) {
     interviewFilterBtn.classList.remove('bg-[#3B82F6]', 'text-white');
     rejectedFilterBtn.classList.remove('bg-[#3B82F6]', 'text-white');
 
-    allFilterBtn.classList.add('btn-soft');
-    interviewFilterBtn.classList.add('btn-soft');
-    rejectedFilterBtn.classList.add('btn-soft');
-
+   
     const selectedBtn = document.getElementById(id);
     currentStatus = id;
     selectedBtn.classList.add('bg-[#3B82F6]', 'text-white');
 
+  
+
     if (id == 'interview-filter-btn') {
         allCardSection.classList.add('hidden');
         filterSection.classList.remove('hidden');
-    } else if (id = 'all-filter-btn') {
+        renderInterview();
+    } else if (id == 'all-filter-btn') {
         allCardSection.classList.remove('hidden');
         filterSection.classList.add('hidden');
     } else if(id == 'rejected-filter-btn'){
         allCardSection.classList.add('hidden');
         filterSection.classList.remove('hidden');
         renderRejection();
+     
     }
+    
 }
 
 mainContainer.addEventListener('click', function (event) {
@@ -63,7 +65,7 @@ mainContainer.addEventListener('click', function (event) {
         const jobStatus = parentNode.querySelector('.job-status').innerText;
         const jobDescription = parentNode.querySelector('.job-description').innerText;
 
-        parentNode.querySelector('.job-status').innerText = 'Interview';
+        parentNode.querySelector('.job-status-btn').innerText = 'Interview';
 
 
         const cardInfo = {
@@ -81,9 +83,14 @@ mainContainer.addEventListener('click', function (event) {
         }
         rejectionList = rejectionList.filter(item => item.jobCompany != cardInfo.jobCompany)
         calculateCount();
-        renderInterview();
+        if(currentStatus == 'interview-filter-btn'){
+            renderInterview();
+        }else if(currentStatus == 'rejected-filter-btn'){
+            renderRejection();
+        }
+        
 
-    }else if (event.target.classList.contains('rejtected-btn')) {
+    }else if (event.target.classList.contains('rejected-btn')) {
         const parentNode = event.target.parentNode.parentNode;
         const jobCompany = parentNode.querySelector('.job-company').innerText;
         const jobPost = parentNode.querySelector('.job-post').innerText;
@@ -91,7 +98,7 @@ mainContainer.addEventListener('click', function (event) {
         const jobStatus = parentNode.querySelector('.job-status').innerText;
         const jobDescription = parentNode.querySelector('.job-description').innerText;
 
-        parentNode.querySelector('.job-status').innerText = 'Rejected';
+        parentNode.querySelector('.job-status-btn').innerText = 'Rejected';
 
 
         const cardInfo = {
@@ -110,10 +117,13 @@ mainContainer.addEventListener('click', function (event) {
         interviewList = interviewList.filter(item => item.jobCompany != cardInfo.jobCompany)
        
         if(currentStatus == 'interview-filter-btn'){
+            renderInterview();
+        }else if(currentStatus == 'rejected-filter-btn'){
             renderRejection();
         }
        
         calculateCount();
+        
         
 
     }
@@ -132,13 +142,12 @@ function renderInterview() {
                     <p class="job-type mb-5 text-gray-500 text-sm">${interview.jobType}</p>
                     <div class="job-status flex gap-4 space-5">
                     
-                         <button class="interview-btn-status btn btn-outline btn-success ">Interview </button>
-                        <button class="rejtected-btn-status btn btn-outline btn-error">Rejected</button>
+                          <button class="job-status-btn btn bg-slate-300" > Applied </button>
                     </div>
                     <p class="job-description my-3 text-[#323B49]">${interview.jobDescription}</p>
                     <div class="flex gap-4">
                         <button class="interview-btn btn btn-outline btn-success">Interview </button>
-                        <button class="rejtected-btn btn btn-outline btn-error">Rejected</button>
+                        <button class="rejected-btn btn btn-outline btn-error">Rejected</button>
                     </div>
                 </div>
 
@@ -162,13 +171,12 @@ function renderRejection() {
                     <p class="job-type mb-5 text-gray-500 text-sm">${rejection.jobType}</p>
                     <div class="job-status flex gap-4 space-5">
                     
-                         <button class="interview-btn-status btn btn-outline btn-success ">Interview </button>
-                        <button class="rejtected-btn-status btn btn-outline btn-error">Rejected</button>
+                         <button class="job-status-btn btn bg-slate-300" >Rejected </button>
                     </div>
                     <p class="job-description my-3 text-[#323B49]">${rejection.jobDescription}</p>
                     <div class="flex gap-4">
                         <button class="interview-btn btn btn-outline btn-success">Interview </button>
-                        <button class="rejtected-btn btn btn-outline btn-error">Rejected</button>
+                        <button class="rejected-btn btn btn-outline btn-error">Rejected</button>
                     </div>
                 </div>
 
