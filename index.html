@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Tracker</title>
+
+
+    <!-- tailwind + daisy -->
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+
+</head>
+
+
+
+<body class="w-full mx-auto bg-[#F8FAFC] p-15 ">
+
+    <header>
+        <h1 class="font-bold text-4xl">Job Application Tracker</h1>
+
+        <div class=" grid grid-cols-3 mt-5 gap-5">
+
+            <div class="bg-white p-5 rounded-md ">
+                <p>Total</p>
+                <h2 id="total" class="font-bold text-4xl pt-4">0</h2>
+            </div>
+            <div class="bg-white p-5 rounded-md">
+                <p>Interview</p>
+                <h2 id="interview-count" class="font-bold text-4xl pt-4 text-[#10B981]">0</h2>
+            </div>
+            <div class="bg-white p-5 rounded-md">
+                <p>Rejected</p>
+                <h2 id="rejected-count" class="font-bold text-4xl pt-4 text-[#EF4444]">0</h2>
+            </div>
+
+        </div>
+
+        <hr class="my-5 text-[#E6E7E9]">
+    </header>
+
+    <main>
+        <div class="flex justify-between items-center">
+
+            <h1 class="font-bold text-3xl">Available Jobs</h1>
+            <p id="total-jobs-count">8 Jobs</p>
+
+        </div>
+
+
+
+
+        <section class="mt-5">
+            <div class="space-x-2">
+                <button onclick="toggleStyle('all-filter-btn')" id="all-filter-btn" class="btn btn-soft bg-[#3B82F6] text-white px-5">All</button>
+                <button onclick="toggleStyle('interview-filter-btn')" id="interview-filter-btn" class="btn btn-soft">Interview</button>
+                <button onclick="toggleStyle('rejected-filter-btn')" id="rejected-filter-btn" class="btn btn-soft">Rejected</button>
+            </div>
+        </section>
+
+        <!-- filter card -->
+         <section id="filter-section" class="hidden">
+
+         </section>
+
+        <section id="allCards" class="card-container    w-full my-10  space-y-5">
+
+            <div class="flex justify-between bg-base-100 rounded-md">
+                <div class="card px-5 py-10 ">
+                    <h1 class="job-company text-black font-bold text-2xl mb-2">Mobile First Corp</h1>
+                    <p class="job-post mb-5 text-gray-500">React Native Developer</p>
+                    <p class="job-type mb-5 text-gray-500 text-sm">Remote • Full-time • $130,000 - $175,000</p>
+                    <div class="job-status flex gap-4 space-5">
+                        <button class="interview-btn-status btn btn-outline btn-success ">Interview </button>
+                        <button class="rejtected-btn-status btn btn-outline btn-error">Rejected</button>
+                    </div>
+                    <p class="job-description my-3 text-[#323B49]">Build cross-platform mobile applications using React Native. Work on
+                        products used
+                        by millions of
+                        users worldwide.</p>
+                    <div class="flex gap-4">
+                        <button class="interview-btn btn btn-outline btn-success">Interview </button>
+                        <button class="rejtected-btn btn btn-outline btn-error">Rejected</button>
+                    </div>
+                </div>
+
+                <div class="p-10">
+                    <i class="fa-regular fa-trash-can"></i>
+                </div>
+            </div>
+
+            <div class="flex justify-between bg-base-100 rounded-md">
+                <div class="card px-5 py-10 ">
+                    <h1 class="job-company text-black font-bold text-2xl mb-2">WebFlow Agency</h1>
+                    <p class="job-post mb-5 text-gray-500">Web Designer & Developer</p>
+                    <p class="job-type mb-5 text-gray-500 text-sm">Los Angeles, CA
+                        •
+                        Part-time
+                        •
+                        $80,000 - $120,000</p>
+                    <div class="job-status  flex gap-4 space-5">
+                        <button class="interview-btn-status btn btn-outline btn-success ">Interview </button>
+                        <button class="rejtected-btn-status btn btn-outline btn-error">Rejected</button>
+                    </div>
+                    <p class="job-description my-3 text-[#323B49]">Create stunning web experiences for high-profile clients. Must have
+                        portfolio and experience with modern web design trends.</p>
+                    <div class="flex gap-4">
+                        <button class="interview-btn btn btn-outline btn-success">Interview </button>
+                        <button class="rejtected-btn btn btn-outline btn-error">Rejected</button>
+                    </div>
+                </div>
+
+                <div class="p-10">
+                    <i class="fa-regular fa-trash-can"></i>
+                </div>
+            </div>
+
+
+            <div class="flex justify-between  bg-base-100 rounded-md">
+                <div class="card px-5 py-10 ">
+                    <h1 class="job-company text-black font-bold text-2xl mb-2">DataViz Solutions</h1>
+                    <p class="job-post mb-5 text-gray-500">Data Visualization Specialistr</p>
+                    <p class="job-type mb-5 text-gray-500 text-sm">Boston, MA
+                        •
+                        Full-time
+                        •
+                        $125,000 - $165,000</p>
+                    <div class="job-status flex gap-4 space-5">
+                        <button class="interview-btn-status btn btn-outline btn-success ">Interview </button>
+                        <button class="rejtected-btn-status btn btn-outline btn-error">Rejected</button>
+                    </div>
+                    <p class="job-description my-3 text-[#323B49]">Transform complex data into compelling visualizations. Required
+                        skills: D3.js, React, and strong analytical thinking.
+                    </p>
+                    <div class="flex gap-4">
+                        <button class="interview-btn btn btn-outline btn-success">Interview </button>
+                        <button class="rejtected-btn btn btn-outline btn-error">Rejected</button>
+                    </div>
+                </div>
+
+                <div class="p-10">
+                    <i class="fa-regular fa-trash-can"></i>
+                </div>
+            </div>
+
+
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
